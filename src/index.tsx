@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles.css";
 
-// redux imports
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import {Counter, Pinger} from "./Components";
