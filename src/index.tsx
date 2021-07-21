@@ -4,35 +4,69 @@ import "./styles.css";
 
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import {Counter, Pinger} from "./Components";
-import {counterReducer} from "./Reducers/counterReducer";
-import {pingReducer} from "./Reducers/pingReducer";
-// import {IReducers} from './types';
+import {
+  Counter, 
+  Pinger, 
+  ObservableInterval
+} from "./Components";
 
-import { createEpicMiddleware, combineEpics } from "redux-observable";
-import { pingEpic, incThrottleEpic, decDebounceEpic } from './Epics/epics'
+import {
+  counterReducer, 
+  pingReducer, 
+  intervalReducer
+} from "./Reducers/reducers";
+
+import { 
+  createEpicMiddleware, 
+  combineEpics } from "redux-observable";
+
+import { 
+  pingEpic, 
+  incThrottleEpic, 
+  decDebounceEpic, 
+  intervalEpic,
+} from './Epics/epics'
 
 const reducers = combineReducers({
   root: counterReducer,
   ping: pingReducer,
+  interval: intervalReducer,
 })
 
 const epics = combineEpics(
   pingEpic, 
   incThrottleEpic,
-  decDebounceEpic
+  decDebounceEpic,
+  intervalEpic
 )
 
 const epicMiddleware = createEpicMiddleware();
 const store = createStore(reducers, applyMiddleware(epicMiddleware));
 epicMiddleware.run(epics);
 
+const TestUnit = (props:any) => {
+  return (
+    <div className="test-unit">
+      {props.children}
+    </div>
+  )  
+}
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>
     <h1>React + Redux + Observables demo</h1>
-    <Counter />
-    <Pinger />
+    <TestUnit>
+      <ObservableInterval />
+    </TestUnit>
+
+    <TestUnit>
+      <Counter />
+    </TestUnit>
+
+    <TestUnit>
+      <Pinger />
+    </TestUnit>
   </Provider>,
   rootElement
 );

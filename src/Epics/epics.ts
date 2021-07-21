@@ -1,11 +1,34 @@
-import { Observable } from 'rxjs'
-import { debounceTime, throttleTime, mapTo, delay, tap } from 'rxjs/operators';
+import { Observable, Observer } from 'rxjs'
+import { 
+  debounceTime, 
+  throttleTime, 
+  mapTo, 
+  delay, 
+  tap 
+} from 'rxjs/operators';
 import { ofType } from "redux-observable";
 import { 
+  INCREMENT,
   INCREMENT_THROTTLE, 
   DECREMENT_DEBOUNCE,
   PING,
-  pongAction, incrementAction, decrementAction } from "../Actions/actions"
+  INTERVAL,
+  INTERVAL_THROTTLE,
+  pongAction, 
+  incrementAction, 
+  decrementAction,
+  throttleIntervalAction
+} from "../Actions/actions"
+
+const THROTTLE_TIME = 2000;
+export const intervalEpic = (action$: Observable<any>) =>
+  action$.pipe(
+    ofType(INTERVAL),
+    tap(val => console.log(`intervalEpic tap: ${JSON.stringify(val)}`)),
+    throttleTime(THROTTLE_TIME),
+    mapTo(throttleIntervalAction())
+  );
+
 
 export const pingEpic = (action$: Observable<any>) =>
   action$.pipe(
