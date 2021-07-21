@@ -30,6 +30,7 @@ epicMiddleware.run(epics);
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>
+    <h1>React + Redux + Observables demo</h1>
     <Counter />
     <Pinger />
   </Provider>,

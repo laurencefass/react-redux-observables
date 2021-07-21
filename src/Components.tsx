@@ -10,8 +10,8 @@ export function Pinger() {
   const handlePing = () => dispatch(pingAction());
 
   return (<>
-    <h1>Pinger</h1>
-    <p>Epic intercepts ping converts to pong</p>
+    <h2>Pinger</h2>
+    <p>Epic intercepts ping and converts to pong to set/unset state</p>
     <p>is pinging: {isPinging.toString()}</p>
     <button onClick={handlePing}>Start PING</button>
   </>)
@@ -26,7 +26,7 @@ export function Counter() {
 
   return (
     <div className="App">
-      <h1>Counter: {counter}</h1>
+      <h2>Counter: {counter}</h2>
       <p>Epics intercept actions. Decrement is debounced, increment throttled</p>
       <button onClick={handleDecrement}>
         - Decrement
