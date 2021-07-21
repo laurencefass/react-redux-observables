@@ -1,3 +1,4 @@
+// actions.ts to scale this file split this file into feature actions and import/export 
 export const PING = "PING";
 export const PONG = "PONG";
 export const INCREMENT = "INCREMENT";

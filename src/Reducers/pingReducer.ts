@@ -1,9 +1,12 @@
-import { bindActionCreators } from "redux";
+// import { bindActionCreators } from "redux";
 
 import {PING, PONG} from '../Actions/actions'
 
+interface IPingAction {
+  type: string
+}
 
-export const pingReducer = (state = { isPinging: false }, action) => {
+export const pingReducer = (state = { isPinging: false }, action: IPingAction) => {
   console.log(action);
   switch (action.type) {
     case PING:

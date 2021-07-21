@@ -2,11 +2,11 @@
 import React from "react";
 import { pingAction, incrementThrottleAction, decrementDebounceAction } from './Actions/actions'
 import { useDispatch, useSelector } from "react-redux";
+import { IReducers } from './types'
 
 export function Pinger() {
   const dispatch = useDispatch();
-
-  const isPinging = useSelector((state) => state.ping.isPinging);
+  const isPinging = useSelector((state: IReducers) => state.ping.isPinging);
   const handlePing = () => dispatch(pingAction());
 
   return (<>
@@ -18,7 +18,7 @@ export function Pinger() {
 }
 
 export function Counter() {
-  const counter = useSelector((state) => state.root.counter);
+  const counter = useSelector((state: IReducers) => state.root.counter);
   const dispatch = useDispatch();
 
   const handleIncrement = () => dispatch(incrementThrottleAction());

@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import {Counter, Pinger} from "./Components";
 import {counterReducer} from "./Reducers/counterReducer";
 import {pingReducer} from "./Reducers/pingReducer";
-import './types';
+// import {IReducers} from './types';
 
 import { createEpicMiddleware, combineEpics } from "redux-observable";
 import { pingEpic, incThrottleEpic, decDebounceEpic } from './Epics/epics'

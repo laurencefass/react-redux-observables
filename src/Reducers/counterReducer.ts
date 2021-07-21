@@ -4,7 +4,14 @@ const initialCounterState = {
   counter: 0
 };
 
-export function counterReducer(state = initialCounterState, action) {
+interface ICounterAction {
+  type: string,
+  payload: {
+    value: number
+  }
+} 
+
+export function counterReducer(state = initialCounterState, action: ICounterAction) {
   switch (action.type) {
     case INCREMENT:
       console.log("counterReducer INCREMENT");
