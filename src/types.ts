@@ -1,5 +1,9 @@
 console.log("Executing types.ts");
 
+interface IMyInterface {
+  value:number;
+}
+
 type MyType = {
   value: number;
 }
